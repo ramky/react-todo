@@ -6,6 +6,7 @@ import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filte
 import {pipe, partial} from './lib/utils'
 import {loadTodos, createTodo, saveTodo, destroyTodo} from './lib/todoService'
 
+import '../node_modules/todomvc-app-css/index.css'
 
 class App extends Component {
   state = {
@@ -76,20 +77,49 @@ class App extends Component {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
-      <div className="App">
-          <h2>React Todos</h2>
-        <div className="Todo-App">
-          {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
-          {this.state.message && <span className='success'>{this.state.message}</span>}
-          <TodoForm handleInputChange={this.handleInputChange}
-            currentTodo={this.state.currentTodo}
-            handleSubmit={submitHandler}/>
-          <TodoList handleToggle={this.handleToggle}
-            todos={displayTodos}
-            handleRemove={this.handleRemove} />
-          <Footer />
-        </div>
-      </div>
+      <section className="todoapp">
+        <header className="header">
+          <h1>todos</h1>
+          <input className="new-todo" placeholder="What needs to be done?" autoFocus />
+        </header>
+        <section className="main">
+          <input id="toggle-all" className="toggle-all" type="checkbox" />
+          <label for="toggle-all">Mark all as complete</label>
+          <ul className="todo-list">
+            <li className="completed">
+              <div className="view">
+                <input className="toggle" type="checkbox" checked />
+                <label>Taste JavaScript</label>
+                <button className="destroy"></button>
+              </div>
+              <input className="edit" value="Create a TodoMVC template" />
+            </li>
+            <li>
+              <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>Buy a unicorn</label>
+                <button className="destroy"></button>
+              </div>
+              <input className="edit" value="Rule the web" />
+            </li>
+          </ul>
+        </section>
+        <footer className="footer">
+          <span className="todo-count"><strong>0</strong> item left</span>
+          <ul className="filters">
+            <li>
+              <a className="selected" href="#/">All</a>
+            </li>
+            <li>
+              <a href="#/active">Active</a>
+            </li>
+            <li>
+              <a href="#/completed">Completed</a>
+            </li>
+          </ul>
+          <button className="clear-completed">Clear completed</button>
+        </footer>
+      </section>
     );
   }
 }
