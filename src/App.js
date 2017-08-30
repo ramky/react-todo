@@ -25,6 +25,7 @@ class App extends Component {
   }
 
   handleRemove = (id, evt) => {
+    console.log("got " + id.toString())
     evt.preventDefault()
     const updatedTodos = removeTodo(this.state.todos, id)
     this.setState({todos: updatedTodos, editing: false})
@@ -35,6 +36,7 @@ class App extends Component {
   handleEdit = (id, evt) => {
     evt.preventDefault()
     this.setState({editing: id})
+    console.log("here2")
   }
 
   handleToggle = (id) => {

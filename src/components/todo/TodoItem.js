@@ -12,9 +12,7 @@ class TodoItem extends Component {
     editText: ""
   }
 
-  getInitialState = () => {
-    return {editText: this.props.name};
-  }
+  getInitialState = () => { return {editText: this.props.name} }
 
   handleToggle = () => partial(this.props.handleToggle, this.props.id)
 
@@ -35,15 +33,15 @@ class TodoItem extends Component {
     console.log("I submitted");
   }
 
-  handleChange = (event) => {
-		if (this.props.editing) {
-			this.setState({editText: event.target.value});
-		}
-  }
+  // handleChange = (event) => {
+	// 	if (this.props.editing) {
+	// 		this.setState({editText: event.target.value});
+	// 	}
+  // }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.editing && this.props.editing) {
-      console.log(prevProps.editing, this.props.editing)
+      this.setState({editText: this.props.name})
       var node = ReactDOM.findDOMNode(this.refs.editField);
       node.focus();
       node.setSelectionRange(node.value.length, node.value.length);
@@ -51,7 +49,6 @@ class TodoItem extends Component {
   }
 
   render() {
-    console.log(this.props.id, this.props.editing)
     return (
       <li className={classNames({
         completed: this.props.isComplete,
