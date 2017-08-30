@@ -41,6 +41,16 @@ class App extends Component {
       .then(() => this.showTempMessage('Todo Updated'))
   }
 
+  // handleEdit = (id, evt) => {
+  //   evt.preventDefault()
+  //   const updated = findById(id, this.state.todos)
+  //   const getUpdatedTodos = partial(updateTodo, this.state.todos)
+  //   const updatedTodos = getUpdatedTodos(updated)
+  //   this.setState({todos: updatedTodos})
+  //   saveTodo(updated)
+  //     .then(() => this.showTempMessage('Todo Updated'))
+  // }
+
   handleSubmit = (evt) => {
     evt.preventDefault()
     const newId = generateId()

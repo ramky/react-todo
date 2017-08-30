@@ -1,5 +1,5 @@
 import React from 'react'
-import {TodoItem} from './TodoItem'
+import TodoItem from './TodoItem'
 import PropTypes from 'prop-types'
 
 export const TodoList = (props) => {
@@ -12,8 +12,10 @@ export const TodoList = (props) => {
           props.todos.map(todo =>
               <TodoItem
                 handleToggle={props.handleToggle}
-                key={todo.id} {...todo} handleRemove={props.handleRemove} />
-        )}
+                key={todo.id} {...todo}
+                handleRemove={props.handleRemove} />
+          )
+        }
       </ul>
 
     </section>
