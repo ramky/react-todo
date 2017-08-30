@@ -9,7 +9,6 @@ export class Link extends Component {
 
   handleClick = (evt) => {
     evt.preventDefault()
-    //console.log(this.props)
     this.context.linkHandler(this.props.to)
   }
 
