@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import logo from './logo.svg'
 import './App.css'
 import {TodoForm, TodoList, Footer} from './components/todo'
 import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
@@ -78,9 +77,7 @@ class App extends Component {
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
       <div className="App">
-
           <h2>React Todos</h2>
-
         <div className="Todo-App">
           {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
           {this.state.message && <span className='success'>{this.state.message}</span>}
