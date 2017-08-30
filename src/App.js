@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import './App.css'
-import {TodoForm, TodoList, Footer} from './components/todo'
+import {TodoHeader, TodoList, Footer} from './components/todo'
 import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
 import {pipe, partial} from './lib/utils'
 import {loadTodos, createTodo, saveTodo, destroyTodo} from './lib/todoService'
@@ -78,10 +78,11 @@ class App extends Component {
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
       <section className="todoapp">
-        <header className="header">
-          <h1>todos</h1>
-          <input className="new-todo" placeholder="What needs to be done?" autoFocus />
-        </header>
+        <TodoHeader
+          handleInputChange={this.handleInputChange}
+          currentTodo={this.state.currentTodo}
+          handleSubmit={submitHandler} />
+
         <section className="main">
           <input id="toggle-all" className="toggle-all" type="checkbox" />
           <label htmlFor="toggle-all">Mark all as complete</label>
