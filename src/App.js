@@ -84,15 +84,14 @@ class App extends Component {
         </header>
         <section className="main">
           <input id="toggle-all" className="toggle-all" type="checkbox" />
-          <label for="toggle-all">Mark all as complete</label>
+          <label htmlFor="toggle-all">Mark all as complete</label>
           <ul className="todo-list">
             <li className="completed">
               <div className="view">
-                <input className="toggle" type="checkbox" checked />
+                <input className="toggle" type="checkbox" defaultChecked />
                 <label>Taste JavaScript</label>
                 <button className="destroy"></button>
               </div>
-              <input className="edit" value="Create a TodoMVC template" />
             </li>
             <li>
               <div className="view">
@@ -100,7 +99,6 @@ class App extends Component {
                 <label>Buy a unicorn</label>
                 <button className="destroy"></button>
               </div>
-              <input className="edit" value="Rule the web" />
             </li>
           </ul>
         </section>
