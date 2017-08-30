@@ -11,7 +11,8 @@ import '../node_modules/todomvc-app-css/index.css'
 class App extends Component {
   state = {
     todos: [],
-    currentTodo: ''
+    currentTodo: '',
+    editing: false
   }
 
   static contextTypes = {
@@ -26,9 +27,14 @@ class App extends Component {
   handleRemove = (id, evt) => {
     evt.preventDefault()
     const updatedTodos = removeTodo(this.state.todos, id)
-    this.setState({todos: updatedTodos})
+    this.setState({todos: updatedTodos, editing: false})
     destroyTodo(id)
       .then(() => this.showTempMessage('Todo Removed'))
+  }
+
+  handleEdit = (id, evt) => {
+    evt.preventDefault()
+    this.setState({editing: id})
   }
 
   handleToggle = (id) => {
@@ -36,20 +42,10 @@ class App extends Component {
     const updated = getToggledTodo(id, this.state.todos)
     const getUpdatedTodos = partial(updateTodo, this.state.todos)
     const updatedTodos = getUpdatedTodos(updated)
-    this.setState({todos: updatedTodos})
+    this.setState({todos: updatedTodos, editing: false})
     saveTodo(updated)
       .then(() => this.showTempMessage('Todo Updated'))
   }
-
-  // handleEdit = (id, evt) => {
-  //   evt.preventDefault()
-  //   const updated = findById(id, this.state.todos)
-  //   const getUpdatedTodos = partial(updateTodo, this.state.todos)
-  //   const updatedTodos = getUpdatedTodos(updated)
-  //   this.setState({todos: updatedTodos})
-  //   saveTodo(updated)
-  //     .then(() => this.showTempMessage('Todo Updated'))
-  // }
 
   handleSubmit = (evt) => {
     evt.preventDefault()
@@ -59,7 +55,8 @@ class App extends Component {
     this.setState({
       todos: updatedTodos,
       currentTodo: '',
-      errorMessage: ''
+      errorMessage: '',
+      editing: false
     })
     createTodo(newTodo)
       .then(() => this.showTempMessage('Todo added'))
@@ -73,7 +70,8 @@ class App extends Component {
   handleEmptySubmit = (evt) => {
     evt.preventDefault()
     this.setState({
-      errorMessage: 'Please supply a todo name'
+      errorMessage: 'Please supply a todo name',
+      editing: false
     })
   }
 
@@ -96,7 +94,10 @@ class App extends Component {
           <TodoList
             handleToggle={this.handleToggle}
             todos={displayTodos}
-            handleRemove={this.handleRemove} />
+            handleRemove={this.handleRemove}
+            handleEdit={this.handleEdit}
+            editing={this.state.editing}
+          />
 
         <footer className="footer">
           <span className="todo-count"><strong>0</strong> item left</span>

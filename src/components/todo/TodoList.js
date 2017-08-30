@@ -13,7 +13,10 @@ export const TodoList = (props) => {
               <TodoItem
                 handleToggle={props.handleToggle}
                 key={todo.id} {...todo}
-                handleRemove={props.handleRemove} />
+                handleRemove={props.handleRemove}
+                handleEdit={props.handleEdit}
+                editing={props.editing == todo.id}
+              />
           )
         }
       </ul>
