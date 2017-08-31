@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import './App.css'
 import {TodoHeader, TodoList, TodoFooter} from './components/todo'
-import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
+import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos, filterCompletedTodos, filterActiveTodos} from './lib/todoHelpers'
 import {pipe, partial} from './lib/utils'
 import {loadTodos, createTodo, saveTodo, destroyTodo} from './lib/todoService'
 
@@ -30,6 +30,12 @@ class App extends Component {
     this.setState({todos: updatedTodos, editing: false})
     destroyTodo(id)
       .then(() => this.showTempMessage('Todo Removed'))
+  }
+
+  handleClearCompleted = (evt) => {
+    evt.preventDefault()
+    filterCompletedTodos(this.state.todos).forEach(todo => removeTodo(this.state.todos, todo.id))
+    this.setState({todos: filterActiveTodos(this.state.todos)})
   }
 
   handleEdit = (id, evt) => {
@@ -112,8 +118,9 @@ class App extends Component {
               handleUpdate={this.handleUpdate}
               editing={this.state.editing} />
 
-            <TodoFooter
-              activeTodoCount={activeTodoCount} />
+              <TodoFooter
+                activeTodoCount={activeTodoCount}
+                handleClearCompleted={this.handleClearCompleted} />
         </section>
     );
   }

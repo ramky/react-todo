@@ -23,6 +23,14 @@ export const removeTodo = (list, id) => {
   ]
 }
 
+export const filterCompletedTodos = (list) => {
+  return list.filter(todo => todo.isComplete)
+}
+
+export const filterActiveTodos = (list) => {
+  return list.filter(todo => todo.isComplete === false)
+}
+
 export const filterTodos = (list, route) => {
   switch(route){
     case '/active':
