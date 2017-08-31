@@ -93,6 +93,10 @@ class App extends Component {
   render() {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
+    var activeTodoCount = this.state.todos.reduce(function (accum, todo) {
+      return todo.isComplete ? accum : accum + 1;
+    }, 0);
+
     return (
         <section className="todoapp">
           <TodoHeader
@@ -108,7 +112,8 @@ class App extends Component {
               handleUpdate={this.handleUpdate}
               editing={this.state.editing} />
 
-            <TodoFooter />
+            <TodoFooter
+              activeTodoCount={activeTodoCount} />
         </section>
     );
   }
