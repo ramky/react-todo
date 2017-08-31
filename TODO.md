@@ -1,6 +1,6 @@
 # Todo
 
-* clear completed feature
+* ~~clear completed feature~~
 * use JSX instead of JS
 * eslint?
 * look into lib?
