@@ -16,12 +16,10 @@ export const TodoList = (props) => {
                 handleRemove={props.handleRemove}
                 handleEdit={props.handleEdit}
                 handleUpdate={props.handleUpdate}
-                editing={props.editing == todo.id}
-              />
+                editing={props.editing == todo.id} />
           )
         }
       </ul>
-
     </section>
   )
 }

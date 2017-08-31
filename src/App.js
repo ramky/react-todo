@@ -94,37 +94,39 @@ class App extends Component {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
-      <section className="todoapp">
-        <TodoHeader
-          handleInputChange={this.handleInputChange}
-          currentTodo={this.state.currentTodo}
-          handleSubmit={submitHandler} />
+      <div id="wrapper">
+        <section className="todoapp">
+          <TodoHeader
+            handleInputChange={this.handleInputChange}
+            currentTodo={this.state.currentTodo}
+            handleSubmit={submitHandler} />
 
-          <TodoList
-            handleToggle={this.handleToggle}
-            todos={displayTodos}
-            handleRemove={this.handleRemove}
-            handleEdit={this.handleEdit}
-            handleUpdate={this.handleUpdate}
-            editing={this.state.editing}
-          />
+            <TodoList
+              handleToggle={this.handleToggle}
+              todos={displayTodos}
+              handleRemove={this.handleRemove}
+              handleEdit={this.handleEdit}
+              handleUpdate={this.handleUpdate}
+              editing={this.state.editing} />
 
-        <footer className="footer">
-          <span className="todo-count"><strong>0</strong> item left</span>
-          <ul className="filters">
-            <li>
-              <a className="selected" href="#/">All</a>
-            </li>
-            <li>
-              <a href="#/active">Active</a>
-            </li>
-            <li>
-              <a href="#/completed">Completed</a>
-            </li>
-          </ul>
-          <button className="clear-completed">Clear completed</button>
-        </footer>
-      </section>
+          <footer className="footer">
+            <span className="todo-count"><strong>0</strong> item left</span>
+            <ul className="filters">
+              <li>
+                <a className="selected" href="#/">All</a>
+              </li>
+              <li>
+                <a href="#/active">Active</a>
+              </li>
+              <li>
+                <a href="#/completed">Completed</a>
+              </li>
+            </ul>
+            <button className="clear-completed">Clear completed</button>
+          </footer>
+        </section>
+      </div>
+
     );
   }
 }

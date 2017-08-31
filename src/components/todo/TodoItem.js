@@ -4,8 +4,8 @@ import {partial} from '../../lib/utils'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-var ESCAPE_KEY = 27;
-var ENTER_KEY = 13;
+const ESCAPE_KEY = 27;
+const ENTER_KEY = 13;
 
 class TodoItem extends Component {
   state = {
@@ -61,7 +61,7 @@ class TodoItem extends Component {
           <label onDoubleClick={this.handleEdit()}>{this.props.name}</label>
           <button
             className="destroy"
-            onClick={this.handleRemove()}></button>
+            onClick={this.handleRemove()} />
         </div>
         <input
           className="edit"
@@ -69,8 +69,7 @@ class TodoItem extends Component {
           ref="editField"
           onBlur={this.handleSubmit}
           onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-        />
+          onKeyDown={this.handleKeyDown} />
       </li>
     )
   }
