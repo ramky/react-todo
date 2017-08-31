@@ -15,6 +15,7 @@ export const TodoList = (props) => {
                 key={todo.id} {...todo}
                 handleRemove={props.handleRemove}
                 handleEdit={props.handleEdit}
+                handleUpdate={props.handleUpdate}
                 editing={props.editing == todo.id}
               />
           )

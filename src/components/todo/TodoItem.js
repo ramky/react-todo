@@ -29,15 +29,13 @@ class TodoItem extends Component {
     }
   }
 
-  handleSubmit = (event) => {
-    console.log("I submitted");
-  }
+  handleSubmit = (event) => this.props.handleUpdate(this.props.id, this.state.editText, event)
 
-  // handleChange = (event) => {
-	// 	if (this.props.editing) {
-	// 		this.setState({editText: event.target.value});
-	// 	}
-  // }
+  handleChange = (event) => {
+		if (this.props.editing) {
+			this.setState({editText: event.target.value});
+		}
+  }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.editing && this.props.editing) {
@@ -69,9 +67,9 @@ class TodoItem extends Component {
           className="edit"
           value={this.state.editText}
           ref="editField"
-          // onBlur={this.handleSubmit}
-          // onChange={this.handleChange}
-          // onKeyDown={this.handleKeyDown}
+          onBlur={this.handleSubmit}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
         />
       </li>
     )
