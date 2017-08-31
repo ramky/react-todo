@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import './App.css'
-import {TodoHeader, TodoList, Footer} from './components/todo'
+import {TodoHeader, TodoList, TodoFooter} from './components/todo'
 import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
 import {pipe, partial} from './lib/utils'
 import {loadTodos, createTodo, saveTodo, destroyTodo} from './lib/todoService'
@@ -94,7 +94,6 @@ class App extends Component {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
-      <div id="wrapper">
         <section className="todoapp">
           <TodoHeader
             handleInputChange={this.handleInputChange}
@@ -109,24 +108,8 @@ class App extends Component {
               handleUpdate={this.handleUpdate}
               editing={this.state.editing} />
 
-          <footer className="footer">
-            <span className="todo-count"><strong>0</strong> item left</span>
-            <ul className="filters">
-              <li>
-                <a className="selected" href="#/">All</a>
-              </li>
-              <li>
-                <a href="#/active">Active</a>
-              </li>
-              <li>
-                <a href="#/completed">Completed</a>
-              </li>
-            </ul>
-            <button className="clear-completed">Clear completed</button>
-          </footer>
+            <TodoFooter />
         </section>
-      </div>
-
     );
   }
 }
