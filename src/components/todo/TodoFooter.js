@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import {Link} from '../router'
 
 const todoCount = (count) => {
@@ -8,20 +8,24 @@ const todoCount = (count) => {
   )
 }
 
-export class TodoFooter extends Component {
-  handleClearCompleted = (event, props) => props.handleClearCompleted(event)
+const clearCompleted = (props) => {
+  return (
+    <button className="clear-completed" onClick={(e) => handleClearCompleted(e, props)}>Clear completed</button>
+  )
+}
 
-  render () {
-    return (
-      <footer className="footer">
-        { todoCount(this.props.activeTodoCount) }
-        <ul className="filters">
-          <li><Link to='/'>All</Link></li>
-          <li><Link to='/active'>Active</Link></li>
-          <li><Link to='/complete'>Complete</Link></li>
-        </ul>
-        <button className="clear-completed" onClick={(e) => this.handleClearCompleted(e, this.props)}>Clear completed</button>
-      </footer>
-    )
-  }
+const handleClearCompleted = (event, props) => props.handleClearCompleted(event)
+
+export const TodoFooter = (props) => {
+  return (
+    <footer className="footer">
+      { todoCount(props.activeTodoCount) }
+      <ul className="filters">
+        <li><Link to='/'>All</Link></li>
+        <li><Link to='/active'>Active</Link></li>
+        <li><Link to='/complete'>Complete</Link></li>
+      </ul>
+      { clearCompleted(props) }
+    </footer>
+  )
 }

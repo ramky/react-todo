@@ -34,7 +34,8 @@ class App extends Component {
 
   handleClearCompleted = (evt) => {
     evt.preventDefault()
-    filterCompletedTodos(this.state.todos).forEach(todo => removeTodo(this.state.todos, todo.id))
+    const completedTodos = filterCompletedTodos(this.state.todos)
+    completedTodos.forEach(todo => destroyTodo(todo.id))
     this.setState({todos: filterActiveTodos(this.state.todos)})
   }
 
