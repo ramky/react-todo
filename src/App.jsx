@@ -39,6 +39,7 @@ class App extends Component {
     const completedTodos = filterCompletedTodos(this.state.todos)
     completedTodos.forEach(todo => destroyTodo(todo.id))
     this.setState({todos: filterActiveTodos(this.state.todos)})
+    this.showTempMessage('Completed Todos cleared')
   }
 
   handleEdit = (id, evt) => {
@@ -100,7 +101,9 @@ class App extends Component {
   }
 
   showFlashMessage() {
-    return this.state.message ? <div className="alert alert-success">{this.state.message}</div> : ''
+    return this.state.message ? 
+      <div className="alert alert-success">{this.state.message}</div> 
+      : ''
   }
 
   render() {
