@@ -99,6 +99,10 @@ class App extends Component {
     })
   }
 
+  showFlashMessage() {
+    return this.state.message ? <div className="alert alert-success">{this.state.message}</div> : ''
+  }
+
   render() {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
@@ -107,11 +111,13 @@ class App extends Component {
     }, 0);
 
     return (
-        <section className="todoapp">
-          <TodoHeader
-            handleInputChange={this.handleInputChange}
-            currentTodo={this.state.currentTodo}
-            handleSubmit={submitHandler} />
+        <div>
+          { this.showFlashMessage() }
+          <section className="todoapp">
+            <TodoHeader
+              handleInputChange={this.handleInputChange}
+              currentTodo={this.state.currentTodo}
+              handleSubmit={submitHandler} />
 
             <TodoList
               handleToggle={this.handleToggle}
@@ -121,10 +127,11 @@ class App extends Component {
               handleUpdate={this.handleUpdate}
               editing={this.state.editing} />
 
-              <TodoFooter
-                activeTodoCount={activeTodoCount}
-                handleClearCompleted={this.handleClearCompleted} />
-        </section>
+            <TodoFooter
+              activeTodoCount={activeTodoCount}
+              handleClearCompleted={this.handleClearCompleted} />
+          </section>
+        </div>
     );
   }
 }
