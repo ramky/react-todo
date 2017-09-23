@@ -29,7 +29,8 @@ class TodoItem extends Component {
     }
   }
 
-  handleSubmit = (event) => this.props.handleUpdate(this.props.id, this.state.editText, event)
+  handleSubmit = (event) => 
+    this.props.handleUpdate(this.props.id, this.state.editText, event)
 
   handleChange = (event) => {
 		if (this.props.editing) {

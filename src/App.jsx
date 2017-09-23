@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import './App.css'
 import {TodoHeader, TodoList, TodoFooter} from './components/todo'
-import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos, filterCompletedTodos, filterActiveTodos} from './lib/todoHelpers'
+import {addTodo, generateId, findById, toggleTodo, updateTodo, 
+  removeTodo, filterTodos, filterCompletedTodos, 
+  filterActiveTodos} from './lib/todoHelpers'
 import {pipe, partial} from './lib/utils'
 import {loadTodos, createTodo, saveTodo, destroyTodo} from './lib/todoService'
 
