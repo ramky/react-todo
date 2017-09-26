@@ -17,17 +17,17 @@ export class Router extends Component {
     browserHistory.push(route)
   }
 
-  // static childContextTypes = {
-  //   route: PropTypes.string,
-  //   linkHandler: PropTypes.func
-  // }
+  static childContextTypes = {
+    route: PropTypes.string,
+    linkHandler: PropTypes.func
+  }
 
-  // getChildContext() {
-  //   return {
-  //     route: this.state.route,
-  //     linkHandler: this.handleLinkClick
-  //   }
-  // }
+  getChildContext() {
+    return {
+      route: this.state.route,
+      linkHandler: this.handleLinkClick
+    }
+  }
 
   componentDidMount() {
     window.onpopstate = () => {
